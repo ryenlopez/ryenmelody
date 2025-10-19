@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ryen + Melody</title>
+  <title>Ryen & Melody</title>
   <style>
     body {
       margin: 0;
@@ -14,6 +14,8 @@
       align-items: center;
       scroll-behavior: smooth;
       overflow-x: hidden;
+      position: relative;
+      font-family: sans-serif;
     }
     img {
       width: 100%;
@@ -25,10 +27,28 @@
       width: 100%;
       max-width: 900px;
     }
-    /* Optional hover highlight for QR clickable area */
     .qr-link:hover {
       opacity: 0.8;
       cursor: pointer;
+    }
+    /* 🎵 Music button styling (TOP RIGHT) */
+    #music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 10px 15px;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 999;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+    #music-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
     }
     audio {
       display: none;
@@ -37,16 +57,18 @@
 </head>
 <body>
 
-  <!-- 🎵 Background Music -->
-  <audio autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
+  <!-- 🎵 Hidden Audio -->
+  <audio id="bg-music" loop>
+    <source src="Harry James & His Orchestra - It's Been A Long, Long Time (Audio).mp3" type="audio/mpeg">
   </audio>
 
-  <!-- 📜 Scrollable Images -->
+  <!-- 🎵 Tap to Play Button (Top Right) -->
+  <div id="music-btn">🔊 Music</div>
+
   <img src="1.jpg" alt="Page 1">
   <img src="2.jpg" alt="Page 2">
 
-  <!-- Page 3 with only QR clickable area -->
+  <!-- Page 3 with QR clickable area -->
   <div class="page">
     <img src="3.jpg" alt="Page 3">
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSeuY51OmRi2kdxgcgpYqFgaHxRg6IelMCcGmefL7RdvqZBb8Q/viewform"
@@ -69,5 +91,18 @@
   <img src="6.jpg" alt="Page 6">
   <img src="7.jpg" alt="Page 7">
 
+  <script>
+    const music = document.getElementById('bg-music');
+    const btn = document.getElementById('music-btn');
+
+    btn.addEventListener('click', () => {
+      music.play();
+      btn.style.opacity = '0.5';
+      btn.innerText = '🎶 Playing';
+      setTimeout(() => {
+        btn.style.opacity = '0.2';
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
