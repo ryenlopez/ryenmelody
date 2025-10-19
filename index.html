@@ -31,6 +31,7 @@
       opacity: 0.8;
       cursor: pointer;
     }
+
     /* 🎵 Music button styling (TOP RIGHT) */
     #music-btn {
       position: fixed;
@@ -58,7 +59,7 @@
 <body>
 
   <!-- 🎵 Hidden Audio -->
-  <audio id="bg-music" loop>
+  <audio id="bg-music" loop preload="auto">
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
@@ -68,7 +69,6 @@
   <img src="1.jpg" alt="Page 1">
   <img src="2.jpg" alt="Page 2">
 
-  <!-- Page 3 with QR clickable area -->
   <div class="page">
     <img src="3.jpg" alt="Page 3">
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSeuY51OmRi2kdxgcgpYqFgaHxRg6IelMCcGmefL7RdvqZBb8Q/viewform"
@@ -94,15 +94,27 @@
   <script>
     const music = document.getElementById('bg-music');
     const btn = document.getElementById('music-btn');
+    let isPlaying = false;
 
-    btn.addEventListener('click', () => {
-      music.play();
-      btn.style.opacity = '0.5';
-      btn.innerText = '🎶 Playing';
-      setTimeout(() => {
-        btn.style.opacity = '0.2';
-      }, 1000);
-    });
+    function playMusic() {
+      if (!isPlaying) {
+        music.play().then(() => {
+          isPlaying = true;
+          btn.innerText = '🎶 Playing';
+          btn.style.opacity = '0.3';
+        }).catch(err => {
+          console.log('Autoplay blocked:', err);
+        });
+      }
+    }
+
+    // Button click
+    btn.addEventListener('click', playMusic);
+
+    // Fallback: start music on first scroll or tap anywhere
+    window.addEventListener('scroll', playMusic, { once: true });
+    window.addEventListener('touchstart', playMusic, { once: true });
   </script>
+
 </body>
 </html>
