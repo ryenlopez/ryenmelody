@@ -17,41 +17,53 @@
       position: relative;
       font-family: sans-serif;
     }
+
+    .page-image {
+      width: 100%;
+      max-width: 900px;
+      border-bottom: 0.5px solid #555; /* Very thin line */
+      margin-bottom: 2px;
+    }
+
     img {
       width: 100%;
       max-width: 900px;
       display: block;
     }
+
     .page {
       position: relative;
       width: 100%;
       max-width: 900px;
     }
+
     .qr-link:hover {
       opacity: 0.8;
       cursor: pointer;
     }
-    /* 🔊 Enhanced Music Button Styling */
+
+    /* 🔊 Light Gray Music Button Styling */
     #music-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #e0e0e0; /* Light gray background */
-  color: #000; /* Dark text for contrast */
-  border: 1px solid #ccc;
-  padding: 12px 18px;
-  border-radius: 50px;
-  cursor: pointer;
-  z-index: 999;
-  font-size: 16px;
-  font-weight: bold;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-}
-#music-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-}
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #e0e0e0;
+      color: #000;
+      border: 1px solid #ccc;
+      padding: 12px 18px;
+      border-radius: 50px;
+      cursor: pointer;
+      z-index: 999;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    #music-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
 
     audio {
       display: none;
@@ -60,46 +72,45 @@
 </head>
 <body>
 
-  <!-- 🎵 Autoplay Audio -->
-  <audio id="bg-music" autoplay loop>
+  <!-- 🎵 Audio (starts paused) -->
+  <audio id="bg-music" loop>
     <source src="Harry James & His Orchestra - It's Been A Long, Long Time (Audio).mp3" type="audio/mpeg">
   </audio>
 
   <!-- 🔊 Music Control Button -->
-  <div id="music-btn">🔇 Pause</div>
+  <div id="music-btn">🔊 Play Music</div>
 
-  <!-- Pages -->
-  <img src="1.jpg" alt="Page 1">
-  <img src="2.jpg" alt="Page 2">
-
-  <!-- Page 3 with QR clickable area -->
-  <div class="page">
-    <img src="3.jpg" alt="Page 3">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeuY51OmRi2kdxgcgpYqFgaHxRg6IelMCcGmefL7RdvqZBb8Q/viewform"
-       target="_blank"
-       class="qr-link"
-       style="
-         position: absolute;
-         bottom: 10.3%;
-         left: 50%;
-         transform: translateX(-50%);
-         width: 280px;
-         height: 280px;
-         display: block;
-       ">
-    </a>
+  <!-- Pages with thin separators -->
+  <div class="page-image"><img src="1.jpg" alt="Page 1"></div>
+  <div class="page-image"><img src="2.jpg" alt="Page 2"></div>
+  <div class="page-image">
+    <div class="page">
+      <img src="3.jpg" alt="Page 3">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeuY51OmRi2kdxgcgpYqFgaHxRg6IelMCcGmefL7RdvqZBb8Q/viewform"
+         target="_blank"
+         class="qr-link"
+         style="
+           position: absolute;
+           bottom: 10.3%;
+           left: 50%;
+           transform: translateX(-50%);
+           width: 280px;
+           height: 280px;
+           display: block;
+         ">
+      </a>
+    </div>
   </div>
-
-  <img src="4.jpg" alt="Page 4">
-  <img src="5.jpg" alt="Page 5">
-  <img src="6.jpg" alt="Page 6">
-  <img src="7.jpg" alt="Page 7">
+  <div class="page-image"><img src="4.jpg" alt="Page 4"></div>
+  <div class="page-image"><img src="5.jpg" alt="Page 5"></div>
+  <div class="page-image"><img src="6.jpg" alt="Page 6"></div>
+  <div class="page-image"><img src="7.jpg" alt="Page 7"></div>
 
   <!-- 🎵 Music Button Script -->
   <script>
     const music = document.getElementById('bg-music');
     const btn = document.getElementById('music-btn');
-    let isPlaying = true;
+    let isPlaying = false;
 
     // Set volume to 70%
     music.volume = 0.7;
