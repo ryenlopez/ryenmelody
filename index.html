@@ -112,16 +112,6 @@
   </style>
 </head>
 <body>
-
-  <!-- 🎉 RSVP Search Section -->
-  <section id="rsvp-section">
-    <h1>Find Your RSVP</h1>
-    <form id="rsvp-form">
-      <input type="text" id="guest-name" placeholder="Enter your name..." required />
-      <button type="submit">View Invitation</button>
-    </form>
-  </section>
-
   <!-- 🎵 Audio (starts paused) -->
   <audio id="bg-music" loop>
     <source src="Harry James & His Orchestra - It's Been A Long, Long Time (Audio).mp3" type="audio/mpeg">
@@ -183,18 +173,6 @@
       }
     });
 
-    // 🎯 RSVP Search Logic
-    const guestList = ['Ryen', 'Melody', 'Alex', 'Jamie']; // Add more names here
-
-    document.getElementById('rsvp-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const name = document.getElementById('guest-name').value.trim();
-      if (guestList.includes(name)) {
-        document.getElementById('invitation-start').scrollIntoView({ behavior: 'smooth' });
-      } else {
-        alert('Sorry, we couldn’t find your name. Please check your spelling or contact us.');
-      }
-    });
   </script>
 
 </body>
