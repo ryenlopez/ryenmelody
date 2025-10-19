@@ -18,10 +18,51 @@
       font-family: sans-serif;
     }
 
+    /* 🎉 RSVP Section */
+    #rsvp-section {
+      width: 100%;
+      max-width: 900px;
+      padding: 60px 20px 40px;
+      text-align: center;
+      background: #111;
+      border-bottom: 1px solid #333;
+    }
+
+    #rsvp-section h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    #rsvp-form input[type="text"] {
+      padding: 12px;
+      width: 60%;
+      max-width: 400px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    #rsvp-form button {
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #e0e0e0;
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    #rsvp-form button:hover {
+      background-color: #ccc;
+    }
+
     .page-image {
       width: 100%;
       max-width: 900px;
-      border-bottom: 0.5px solid #555; /* Very thin line */
+      border-bottom: 0.5px solid #555;
       margin-bottom: 2px;
     }
 
@@ -72,6 +113,15 @@
 </head>
 <body>
 
+  <!-- 🎉 RSVP Search Section -->
+  <section id="rsvp-section">
+    <h1>Find Your RSVP</h1>
+    <form id="rsvp-form">
+      <input type="text" id="guest-name" placeholder="Enter your name..." required />
+      <button type="submit">View Invitation</button>
+    </form>
+  </section>
+
   <!-- 🎵 Audio (starts paused) -->
   <audio id="bg-music" loop>
     <source src="Harry James & His Orchestra - It's Been A Long, Long Time (Audio).mp3" type="audio/mpeg">
@@ -81,7 +131,7 @@
   <div id="music-btn">🔊 Play Music</div>
 
   <!-- Pages with thin separators -->
-  <div class="page-image"><img src="1.jpg" alt="Page 1"></div>
+  <div class="page-image" id="invitation-start"><img src="1.jpg" alt="Page 1"></div>
   <div class="page-image"><img src="2.jpg" alt="Page 2"></div>
   <div class="page-image">
     <div class="page">
@@ -112,7 +162,6 @@
     const btn = document.getElementById('music-btn');
     let isPlaying = false;
 
-    // Set volume to 70%
     music.volume = 0.7;
 
     btn.addEventListener('click', async () => {
@@ -131,6 +180,19 @@
       } catch (err) {
         console.error('Music play failed:', err);
         btn.innerText = '❌ Tap Again';
+      }
+    });
+
+    // 🎯 RSVP Search Logic
+    const guestList = ['Ryen', 'Melody', 'Alex', 'Jamie']; // Add more names here
+
+    document.getElementById('rsvp-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('guest-name').value.trim();
+      if (guestList.includes(name)) {
+        document.getElementById('invitation-start').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        alert('Sorry, we couldn’t find your name. Please check your spelling or contact us.');
       }
     });
   </script>
