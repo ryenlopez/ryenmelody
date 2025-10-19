@@ -17,24 +17,20 @@
       position: relative;
       font-family: sans-serif;
     }
-
     img {
       width: 100%;
       max-width: 900px;
       display: block;
     }
-
     .page {
       position: relative;
       width: 100%;
       max-width: 900px;
     }
-
     .qr-link:hover {
       opacity: 0.8;
       cursor: pointer;
     }
-
     /* 🎵 Music button styling (TOP RIGHT) */
     #music-btn {
       position: fixed;
@@ -43,20 +39,17 @@
       background: rgba(255, 255, 255, 0.15);
       color: #fff;
       border: 1px solid rgba(255, 255, 255, 0.5);
-      padding: 10px 18px;
+      padding: 10px 15px;
       border-radius: 50px;
       cursor: pointer;
       z-index: 999;
       backdrop-filter: blur(5px);
       transition: all 0.3s ease;
       font-size: 14px;
-      user-select: none;
     }
-
     #music-btn:hover {
       background: rgba(255, 255, 255, 0.3);
     }
-
     audio {
       display: none;
     }
@@ -64,16 +57,16 @@
 </head>
 <body>
 
-  <!-- 🎵 Hidden Audio -->
-  <audio id="bg-music" loop preload="auto">
-    <source src="music.mp3" type="audio/mpeg">
+  <!-- 🎵 Hidden Audio (Google Drive hosted) -->
+  <audio id="bg-music" loop>
+    <source src="https://drive.google.com/uc?export=download&id=1hl8BGERY_4kb_7ZRjcgkXy-mO8kJ2XY4" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
   <!-- 🎵 Tap to Play Button (Top Right) -->
   <div id="music-btn">🔊 Play Music</div>
 
-  <!-- Wedding Pages -->
+  <!-- Pages -->
   <img src="1.jpg" alt="Page 1">
   <img src="2.jpg" alt="Page 2">
 
@@ -100,7 +93,7 @@
   <img src="6.jpg" alt="Page 6">
   <img src="7.jpg" alt="Page 7">
 
-  <!-- 🎵 Music Script -->
+  <!-- 🎵 Music Button Script -->
   <script>
     const music = document.getElementById('bg-music');
     const btn = document.getElementById('music-btn');
@@ -111,7 +104,7 @@
         if (!isPlaying) {
           await music.play();
           isPlaying = true;
-          btn.innerText = '🔇 Pause Music';
+          btn.innerText = '🔇 Pause';
           btn.style.opacity = '0.6';
         } else {
           music.pause();
