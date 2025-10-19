@@ -31,24 +31,26 @@
       opacity: 0.8;
       cursor: pointer;
     }
-    /* 🎵 Music button styling (TOP RIGHT) */
+    /* 🔊 Enhanced Music Button Styling */
     #music-btn {
       position: fixed;
       top: 20px;
       right: 20px;
-      background: rgba(255, 255, 255, 0.15);
+      background: linear-gradient(135deg, #ff6ec4, #7873f5);
       color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      padding: 10px 15px;
+      border: none;
+      padding: 12px 18px;
       border-radius: 50px;
       cursor: pointer;
       z-index: 999;
-      backdrop-filter: blur(5px);
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
       transition: all 0.3s ease;
-      font-size: 14px;
     }
     #music-btn:hover {
-      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
     }
     audio {
       display: none;
@@ -57,14 +59,13 @@
 </head>
 <body>
 
-  <!-- 🎵 Hidden Audio (Google Drive hosted) -->
-<audio id="bg-music" loop>
-  <source src="Harry James & His Orchestra - It's Been A Long, Long Time (Audio).mp3" type="audio/mpeg">
-</audio>
+  <!-- 🎵 Autoplay Audio -->
+  <audio id="bg-music" autoplay loop>
+    <source src="Harry James & His Orchestra - It's Been A Long, Long Time (Audio).mp3" type="audio/mpeg">
+  </audio>
 
-
-  <!-- 🎵 Tap to Play Button (Top Right) -->
-  <div id="music-btn">🔊 Play Music</div>
+  <!-- 🔊 Music Control Button -->
+  <div id="music-btn">🔇 Pause</div>
 
   <!-- Pages -->
   <img src="1.jpg" alt="Page 1">
@@ -97,7 +98,10 @@
   <script>
     const music = document.getElementById('bg-music');
     const btn = document.getElementById('music-btn');
-    let isPlaying = false;
+    let isPlaying = true;
+
+    // Set volume to 70%
+    music.volume = 0.7;
 
     btn.addEventListener('click', async () => {
       try {
