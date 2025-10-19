@@ -3,40 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Melody Scroll</title>
+  <title>Ryen + Melody</title>
   <style>
     body {
       margin: 0;
       background: #000;
       color: #fff;
-      font-family: sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
     img {
       width: 100%;
       max-width: 900px;
-      margin: 0 auto;
       display: block;
     }
-    .container {
+    .page {
+      position: relative;
       width: 100%;
-      overflow-y: auto;
-      height: 100vh;
-      scroll-behavior: smooth;
+      max-width: 900px;
+    }
+    /* Optional hover highlight for QR clickable area */
+    .qr-link:hover {
+      opacity: 0.8;
+      cursor: pointer;
+    }
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="1.jpg" alt="Page 1">
-    <img src="2.jpg" alt="Page 2">
+
+  <!-- 🎵 Background Music -->
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- 📜 Scrollable Images -->
+  <img src="1.jpg" alt="Page 1">
+  <img src="2.jpg" alt="Page 2">
+
+  <!-- Page 3 with only QR clickable area -->
+  <div class="page">
     <img src="3.jpg" alt="Page 3">
-    <img src="4.jpg" alt="Page 4">
-    <img src="5.jpg" alt="Page 5">
-    <img src="6.jpg" alt="Page 6">
-    <img src="7.jpg" alt="Page 7">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeuY51OmRi2kdxgcgpYqFgaHxRg6IelMCcGmefL7RdvqZBb8Q/viewform"
+       target="_blank"
+       class="qr-link"
+       style="
+         position: absolute;
+         bottom: 12%;
+         left: 50%;
+         transform: translateX(-50%);
+         width: 140px;
+         height: 140px;
+         display: block;
+       ">
+    </a>
   </div>
+
+  <img src="4.jpg" alt="Page 4">
+  <img src="5.jpg" alt="Page 5">
+  <img src="6.jpg" alt="Page 6">
+  <img src="7.jpg" alt="Page 7">
+
 </body>
 </html>
